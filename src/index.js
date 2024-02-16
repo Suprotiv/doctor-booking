@@ -1,13 +1,45 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Main from './screens/Main';
+import Login from './screens/Login';
+import Signup from './screens/Signup';
+import { AuthContextProvider } from './context/AuthContext';
+import ProtextedRoute from './components/ProtextedRoute';
+import Home from './screens/Home';
+
+const router = createBrowserRouter([
+  {
+    path: "/home",
+    element: <div><ProtextedRoute><Home/></ProtextedRoute></div>,
+  },
+  {
+    path: "/login",
+    element: <div><Login/></div>,
+  },
+  {
+    path: "/signup",
+    element: <div><Signup/></div>,
+  },
+  {
+    path: "/",
+    element: <div><Main/></div>,
+  },
+ 
+]);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <AuthContextProvider>
+   <RouterProvider router={router} />
+   </AuthContextProvider>
   </React.StrictMode>
 );
 
