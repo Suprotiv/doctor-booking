@@ -25,21 +25,27 @@ function Signup() {
         try{
             await signup(email,password)
             if(type==='doctor'){
-            setDoc(doc(db,'doctor', email), {
+            await setDoc(doc(db,'doctor', email), {
+                   email:email, 
                    name:name,
                    description:description,
-                   field:field
+                   field:field,
+                   listings:[]
             })
+            navigate('/account/doctor')
         }
         else
         {
-            setDoc(doc(db,'patient', email), {
+            await setDoc(doc(db,'patient', email), {
+              email:email ,
               name:name,
                 listings:[]
 
         })
+        
+        navigate('/home')
         }
-            navigate('/home')
+           
 
         }
         catch(error)

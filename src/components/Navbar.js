@@ -22,7 +22,9 @@ function Navbar() {
         <h1 className='text-white font-bold '>App-Name</h1>
         <div className='flex gap-4 md:gap-8'>
             {user ? <>
+                    <Link to='/account' className='hover:cursor-pointer' >
                     <p className='text-white'>account</p>
+                    </Link>
                     <p className='text-white hover:cursor-pointer' onClick={logoutuser}>logout</p>
                      </>:
                      <>

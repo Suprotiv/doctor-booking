@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from '../Firebase'
 
 function Login() {
     const[email,setEmail]=useState()
@@ -10,9 +12,32 @@ function Login() {
 
     const submitlogin=(async (e)=>{
         e.preventDefault()
+
         try{
             await login(email,password)
-            navigate('/home')
+            const doctorCollectionRef = collection(db, 'doctor');
+            const querySnapshot = await getDocs(doctorCollectionRef);
+
+            const doctorsData = [];
+
+            // Iterate through the documents in the collection
+            querySnapshot.forEach((doc) => {
+              // Extract the data from each document and push it to the array
+              doctorsData.push({ id: doc.id, ...doc.data() });
+            });
+            const isDoctor = doctorsData.some((show) => show.email === email);
+
+            if(isDoctor)
+            {
+              navigate('/account/doctor')
+            }
+            else{
+              navigate('/home')
+            }
+
+
+
+           
         }
         catch(error)
         {

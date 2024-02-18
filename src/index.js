@@ -12,6 +12,8 @@ import Signup from './screens/Signup';
 import { AuthContextProvider } from './context/AuthContext';
 import ProtextedRoute from './components/ProtextedRoute';
 import Home from './screens/Home';
+import Account from './screens/Account';
+import AccountDoc from './screens/AccountDoc';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,14 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <div><Main/></div>,
+  },
+  {
+    path: "/account",
+    element: <div><Account/></div>,
+  },
+  {
+    path: "/account/doctor",
+    element: <div><AccountDoc/></div>,
   },
  
 ]);
