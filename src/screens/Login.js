@@ -9,6 +9,7 @@ function Login() {
     const[password,setPassword]=useState()
     const {user,login}=useAuth()
     const navigate=useNavigate()
+    const [error,setError]=useState(); 
 
     const submitlogin=(async (e)=>{
         e.preventDefault()
@@ -41,7 +42,7 @@ function Login() {
         }
         catch(error)
         {
-            console.log(error)
+          setError(error)
         }
     })
 
@@ -53,7 +54,7 @@ function Login() {
             <div className='max-w-[320px] mx-auto py-16'>
               <h1 className='text-3xl font-bold flex justify-center my-3'>Login</h1>
               {
-                  
+                    error ?<p className='bg-red-900 text-white p-3 rounded'>{(error?.message).slice(9,)}</p>:null
               }
           <form className='w-full flex flex-col  py-4' onSubmit={submitlogin}>
             <input className='bg-gray-600 py-2 my-2 px-2' placeholder='Enter email' value={email} onChange={(e)=>setEmail(e.target.value)}></input>

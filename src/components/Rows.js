@@ -115,7 +115,7 @@ function Rows({items}) {
         <AppointmentModal isOpen={appointmentModalOpen} onClose={handleCloseModal} item={items} like={like} setLike={setLike}/>
         :
         <>
-        <img src='logo192.png' className=' h-[90px] md:h-[100px] w-[90px] md:w-[100px]'/>
+        <img src='' className=' h-[90px] md:h-[100px] w-[90px] md:w-[100px]'/>
         <div>
         <h1 className='text-white py-2 text-xl md:text-3xl font-bold'>{items?.name}</h1>
         <p className='text-white py-2'>description : {items?.description}</p>

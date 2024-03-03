@@ -1,10 +1,13 @@
 import { useAuth } from '../context/AuthContext'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import { db } from '../Firebase'
+import { useEffect, useState } from 'react'
 
 function SavedBookingsDoc({items}) {
 
     const{user}=useAuth()
+
+
 
     const docID=(doc(db,'doctor',`${user?.email}`))
     const patientID=(doc(db,'patient',`${items.email}`))
@@ -49,7 +52,6 @@ function SavedBookingsDoc({items}) {
     })
 
     const reject =(async (e)=>{
-        
         if(user)
         {
           const docData= (await getDoc(docID))
@@ -59,8 +61,7 @@ function SavedBookingsDoc({items}) {
           {
             const data1=(docData.data()).listings || []
   
-            const data1_2=data1.filter((val)=> val?.email===items?.email)
-  
+            const data1_2=data1.filter((val)=> val?.email===items?.email)  
             data1_2[0].status='rejected'
   
             console.log(data1_2[0])
@@ -88,7 +89,7 @@ function SavedBookingsDoc({items}) {
       })
 
   return (
-    <>
+    <>{
         <div className=' bg-gray-800 w-[90%] flex items-center cursor-pointer relative p-3 md:p-6 my-8 mx-3 gap-4 md:gap-8'>
     <img src='logo192.png' className=' h-[90px] md:h-[100px] w-[90px] md:w-[100px]' alt=''/>
     <div>
@@ -98,11 +99,17 @@ function SavedBookingsDoc({items}) {
    
     <p className='text-white py-2 my-2' >Status : {items?.status}</p>   
     <div className='flex  gap-3 md:gap-5'>
+        { items?.status==='pending' ?
+            <>
         <button className='bg-gray-300 p-2 text-lg font-bold rounded' onClick={confirm}>Confirm</button>
         <button className='bg-gray-300 p-2 text-lg font-bold rounded' onClick={reject}>Reject</button>
+            </>
+            :null
+        }
     </div>
     </div>
-</div>
+</div> 
+}
 </>
   )
 }

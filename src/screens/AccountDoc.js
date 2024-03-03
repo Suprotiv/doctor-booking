@@ -35,14 +35,6 @@ function AccountDoc() {
         console.log(data2)
         setBookings(data2)
 
-        {
-            (bookings.length!==0)?
-          bookings.map((item)=>(
-           <SavedBookingsDoc items={item}/>
-          ))
-          :
-          <p className='text-5xl font-bold text-gray-300 flex justify-center items-center h-[60vh]'>Nothing to Show !</p>
-         }
       }
 
 
@@ -68,19 +60,19 @@ function AccountDoc() {
     return (
         <div>
             <Navbar/>
-            <div className='flex justify-center items-center gap-6 py-6'>
-              <p className='text-gray-400 font-bold text-2xl md:text-3xl hover:cursor-pointer' onClick={()=>setOption('pending')}>pending</p>
-              <p className='text-gray-400 font-bold text-2xl md:text-3xl hover:cursor-pointer' onClick={()=>setOption('confirmed')} >confirmed</p>
-              <p className='text-gray-400 font-bold text-2xl md:text-3xl hover:cursor-pointer' onClick={()=>setOption('rejected')} >rejected</p>
-            </div>
+            <div className='flex justify-center items-center gap-6 pt-6'>
+    <p className={` font-bold text-lg md:text-3xl hover:cursor-pointer ${option === 'pending' ? 'text-black' :'text-gray-400'}`} onClick={() => setOption('pending')}>Pending</p>
+    <p className={`font-bold text-lg md:text-3xl hover:cursor-pointer ${option === 'confirmed' ? 'text-black' : 'text-gray-400'}`} onClick={() => setOption('confirmed')}>Confirmed</p>
+    <p className={`font-bold text-lg md:text-3xl hover:cursor-pointer ${option === 'rejected' ? 'text-black' : 'text-gray-400'}`} onClick={() => setOption('rejected')}>Rejected</p>
+    </div>
+
             <div>
             {
-             (bookings.length!==0)?
+             
            bookings.map((item)=>(
             <SavedBookingsDoc items={item}/>
            ))
-           :
-           <p className='text-5xl font-bold text-gray-300 flex justify-center items-center h-[60vh]'>Nothing to Show !</p>
+          
           }
             </div>
     

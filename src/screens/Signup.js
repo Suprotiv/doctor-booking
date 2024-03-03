@@ -25,7 +25,7 @@ function Signup() {
         try{
             await signup(email,password)
             if(type==='doctor'){
-            await setDoc(doc(db,'doctor', email), {
+            await setDoc(doc(db,'doctor',  email.toLowerCase()), {
                    email:email, 
                    name:name,
                    description:description,
@@ -36,7 +36,7 @@ function Signup() {
         }
         else
         {
-            await setDoc(doc(db,'patient', email), {
+            await setDoc(doc(db,'patient', email.toLowerCase()), {
               email:email ,
               name:name,
                 listings:[]
