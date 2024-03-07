@@ -38,9 +38,7 @@ function Navbar() {
   // Return the component only if isDoctor is updated
   return (
     <div className='bg-black w-full h-[50px] py-3 px-4 md:px-8 flex justify-between'>
-      <Link to='/home' className='hover:cursor-pointer'>
         <h1 className='text-white font-bold hover:cursor-pointer'>App-Name</h1>
-      </Link>
       <div className='flex gap-4 md:gap-8'>
         {user ? (
           !isDoctor ? (

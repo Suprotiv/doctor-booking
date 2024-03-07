@@ -81,7 +81,7 @@ function Main() {
       ]}
       wrapper="span"
       speed={50}
-      className='text-5xl'
+      className='text-xl md:text-5xl'
       repeat={Infinity}
     />
       <Link to='/signup'>
